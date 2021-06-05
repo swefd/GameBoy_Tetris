@@ -40,6 +40,8 @@ void setup() {
   createBlock(random(0,7));
   Serial.begin(9600);
   Serial.println(rot);
+  Serial.println("test");
+
 }
 
 
