@@ -7,10 +7,14 @@
 GameBoy gb;
 int rot = 1;
 int x = 2,y=-1;
+int speed = 200;
+int acc = 1;
+int score = 0;
+int level = 0;
 
 
 void drawBlock(byte arr[4][4],int x,int y){ //Функція яка малює блок
-  for(int i = 0;i < 4;i++){
+  for(int i = 0;i < 4;i++){ 
     for(int j = 0;j < 4;j++){
       if(arr[j][i]==1){
         gb.drawPoint(x+i,y+j);
@@ -65,6 +69,13 @@ void makeMove(){
       else rot++;
     }
   }
+  if(gb.getKey()==6){
+    acc = 4;
+  }
+  else {
+    acc = 1;
+  }
+
 }
 
 
@@ -79,6 +90,18 @@ void loop(){
   if(gb.checkBlockCollision(gb.block[rot], x, y+1)){
     Serial.println(rot);  
     gb.memBlock(gb.block[rot],x,y);
+
+    int lines = gb.fullLine();
+    if (lines != 0)
+    {
+      score += lines;
+
+    }
+    if(lines == 5){
+      
+    }
+   
+
     createBlock(random(0,7));
     Serial.println(rot); 
   }
@@ -90,7 +113,7 @@ void loop(){
 
   gb.drawDisplay();   // Очистити дисплей
   drawBlock(gb.block[rot],x,y);
-  delay(100);
+  delay(speed / acc);
 }
 
 
