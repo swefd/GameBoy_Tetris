@@ -41,7 +41,6 @@ void setup() {
   Serial.begin(9600);
   Serial.println(rot);
   Serial.println("test");
-
 }
 
 
@@ -70,9 +69,6 @@ void makeMove(){
 
 
 
-
-
-
 void loop(){
   makeMove();
 
@@ -89,6 +85,8 @@ void loop(){
   else{
     y++;
   }
+
+
 
   gb.drawDisplay();   // Очистити дисплей
   drawBlock(gb.block[rot],x,y);
