@@ -12,6 +12,8 @@ int acc = 1;
 int score = 0;
 int level = 0;
 
+bool nameOfVariable = true;
+
 
 void drawBlock(byte arr[4][4],int x,int y){ //Функція яка малює блок
   for(int i = 0;i < 4;i++){ 
@@ -45,6 +47,7 @@ void setup() {
   Serial.begin(9600);
   Serial.println(rot);
   Serial.println("test");
+  //tone(4, 247, 1000);
 }
 
 
@@ -76,6 +79,7 @@ void makeMove(){
     acc = 1;
   }
 
+
 }
 
 
@@ -95,10 +99,13 @@ void loop(){
     if (lines != 0)
     {
       score += lines;
+      level += lines;
 
     }
-    if(lines == 5){
-      
+    if(level == 5){
+    level = 0;
+    acc++;
+    gb.sound(SCORE);
     }
    
 
