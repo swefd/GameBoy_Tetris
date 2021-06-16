@@ -12,8 +12,15 @@ int acc = 1;
 int score = 0;
 int level = 0;
 
-bool nameOfVariable = true;
 
+
+
+bool loss(){
+  if (gb.checkBlockCollision(gb.block[rot], x, 0))
+    return true;
+  else
+  return false;
+}
 
 void drawBlock(byte arr[4][4],int x,int y){ //Функція яка малює блок
   for(int i = 0;i < 4;i++){ 
@@ -85,6 +92,16 @@ void makeMove(){
 
 
 void loop(){
+
+  if (loss()){
+    for (int i = 0; i < 8; i++){
+      for (int i = 0; i < 16; i++){
+        gb.wipePoint(i,j);
+      }
+    }
+  }
+  
+
   makeMove();
 
   /**
